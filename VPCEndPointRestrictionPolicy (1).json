@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Id": "Policy1415115909152",
+  "Statement": [
+    {
+      "Sid": "Access-to-specific-VPCE-only",
+      "Effect": "Deny",
+      "Action": "s3:*",
+      "Resource": ["arn:aws:s3:::my_bucket",
+                   "arn:aws:s3:::my_bucket/*"],
+      "NotPrincipal": {
+        "AWS": [
+                "arn:aws:iam::account-id:user/myadmin",
+                "arn:aws:iam::account-id:root"
+        ]
+      },                   
+      "Condition": {
+        "StringNotEquals": {
+          "aws:sourceVpce": "vpce-xxxxxxxx"
+        }
+      }
+    }
+  ]
+}	

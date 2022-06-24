@@ -1,0 +1,23 @@
+{
+    "Id": "CrossAccountAccess",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::my_bucket",
+                "arn:aws:s3:::my_bucket/*"
+            ],
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::account-id:user/alice",
+                    "arn:aws:iam::account-id:user/bob"
+                ]
+            }
+        }
+    ]
+}
